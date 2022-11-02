@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кто сможет объяснить?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!--ГЛАВНАЯ СТРАНИЦА-->
+    <section class="container">
+       <h1>" HELP "</h1>
+        <h1>Кто поможет?</h1>
+        <ul class="gallery">
+            <li class="filter active" data-filter ="all">Все КАРТИНКИ</li>
+            <li class="filter" data-filter ="almazar">КАРТИНКИ</li>
+        </ul>
+
+        <!--ФОТО-->
+        <div class="product">
+            <div class="itembox almazar">
+            <img src="./img/h-1.jpg"  data-item = "almazar" alt="">
+            </div>
+            <div class="itembox almazar">
+                <img src="./img/h-2.jpg"  data-item = "almazar" alt="">
+            </div>
+            <div class="itembox almazar">
+                <img src="./img/sh-1.jpg"  data-item = "almazar" alt="">
+            </div>
+            <div class="itembox shaihantohyr">
+                <img src="./img/sh-2.jpg"  data-item = "shaihantohyr" alt="">
+            </div>
+            <div class="itembox shaihantohyr">
+                <img src="./img/w-1.jpg"  data-item = "shaihantohyr" alt="">
+            </div>
+            <div class="itembox shaihantohyr">
+                <img src="./img/w-2.jpg"  data-item = "shaihantohyr" alt="">
+            </div>
+            <div class="itembox shaihantohyr">
+                <img src="./img/watch2.jpg"  data-item = "shaihantohyr" alt="">
+            </div>
+
+        </div>
+    </section>
+
+<script src="app.js"></script>
+
+    
+</body>
+</html
+
+//selecting ul
+const gallery = document.querySelector(".gallery");
+
+//select imagebox
+const itemboxes = document.querySelectorAll(".itembox")
+console.log(itemboxes)
+
+
+gallery.addEventListener("click", (e)=>{
+    console.log(e)
+
+
+<!--app.js-->
+    if(e.target.classList.contains("filter")){
+        
+        gallery.querySelector(".active").classList.remove("active");
+
+        e.target.classList.add("active");
+
+        const filterValue = e.target.getAttribute("data-filter");
+        console.log(filterValue)
+
+        itemboxes.forEach(item =>{
+
+            if(item.classList.contains(filterValue) || filterValue === "all"){
+                item.classList.add("show");
+
+                item.classList.remove("hide");
+               
+            }
+            else {
+                item.classList.add("hide")
+            }
+
+
+        })
+    }
+})
+<!--style.css-->
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+body {
+   background: url(./img/bektimir/2.png); /* Фоновый цвет и фоновый рисунок*/
+   background-attachment: fixed; /* Фон страницы фиксируется */
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+li {
+    list-style: none;
+}
+/*====================================================================*/
+/*Шапка С НАЗВАНИЕМ*/
+.container h1{
+    margin-top: 10px; /*отступ между двумя верхними заголовками названия страницы*/
+    text-align: center;
+    text-transform:uppercase;
+    text-decoration-line: underline;
+    letter-spacing: 5px; /*Растояние между буквами*/
+    text-shadow: 8px 8px 8px rgb(16, 34, 191);
+    color: rgb(189, 223, 242); /*красивый цвет*/
+    font-size: 3em;
+}
+.container{
+    padding: 10px;
+    width: 100%; /*Общ.Ширина всей страницы сайта*/
+    margin: 40px auto; /*ОТСТУП СВЕРХУ ВСЯ СТРАНИЦА*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+/*КОНЕЦ Шапка С НАЗВАНИЕМ*/
+/*====================================================================*/
+/*ШАПКА с меню*/
+.container ul {
+    display: flex; /*не понятно*/
+    justify-content: center; /*Группирует надпись районов по центру*/
+    align-items: center; /* выравнивает флекс-элементы внутри контейнера в перпендикулярном направлении*/
+    flex-wrap: wrap; /*Группирует верхнюю надпись - районы*/
+    margin-bottom: 40px; /*Отступ всех картинок сверху-вниз*/
+    /*color: rgb(7, 18, 137);*/
+    
+    margin-top: auto;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration-line: underline;
+    text-shadow: 8px 8px 8px  rgb(16, 34, 191);
+    color: rgb(16, 34, 191);           /* rgb(189, 223, 242); /*красивый цвет букв*/
+    font-size: 3em;
+}
+
+.container ul li {
+    letter-spacing: 2px; /*Растояние между буквами - районы.*/
+    padding: 5px 15px; /*растояния ширины между строками*/
+    cursor: pointer;
+    margin: 5px; /*растояния высоты между строками*/
+    text-transform: uppercase;
+    border-bottom: 1px solid transparent; /*Размер кнопки*/
+    font-weight: initial; /*Декор букв*/
+    font-size: 15px; /*Размер букв*/
+}
+li:hover {background-color: rgb(15, 4, 99)} /*ЦВЕТ ПРИ НАВЕДЕНИИ МЫШКИ*/
+.container ul li.active {
+    color: #e8f3e8; /*Цвет букв в активной ссылке после нажатия*/    
+}
+ul li.active{
+        background-color: rgba(92, 99, 222, 0.897); /*Цвет самой кнопки после нажатия*/
+}
+/*====================================================================*/
+/* ФОТО-КАРТИНКИ */
+section{
+    width: 85%;
+    margin: 50px auto;
+}
+.product{
+    display: flex; /*Расположение картинок на экране flex*/
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.product .itembox {
+    position: relative;
+    width: 250px;
+    height: 150px;
+    margin: 10px;
+    display: block;
+}
+.product .itembox img {
+    position: absolute;
+    width: 100%; /*Размнр начальной картинки*/
+    height: 100%; /*Размнр начальной картинки*/
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+img {
+    padding: 2px; /* Толщина рамки */
+    background: #6dcff6; /* Цвет рамки бирюзовый*/
+    border-radius: 10px;
+    transition: 2s; /*СКОРОСТЬ УВЕЛИЧЕНИЯ ФОТО*/
+   }
+
+   img:hover {
+     outline: 1px solid  #3d07de ; /* Цветная рамка при наведении мышкой */
+    transform: scale(2); /*РАЗМЕР УВЕЛИЧЕНИЯ ФОТО + 0.2 это 20% от начального (1) размера*/
+   }
+
+/*====================================================================*/
+
+/*ЭФФЕКТЫ СЛАЙДЕРА*/
+.container .product .itembox.show{
+    animation: show .5s ease 0s 1 forwards;
+    transform-origin: center;
+}
+.container .product .itembox.hide{
+    animation: hide .5s ease 0s 1 forwards;
+    transform-origin: center;
+}
+@keyframes hide {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(0);
+        width: 0;
+        height: 0;
+        margin: 0;
+    }
+}
+@keyframes show {
+    0%{
+      
+        transform: scale(0);
+        width: 0;
+        height: 0;
+        margin: 0;
+    }
+    100%{
+        transform: scale(1);
+       
+    }
+}
+
+@media(max-width: 468px){
+    .product .itembox {
+        width: 320px;
+        height: 250px;
+    }
+}
